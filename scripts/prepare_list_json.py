@@ -30,5 +30,5 @@ for i in module_keys:
 
         output_table[a] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
-with open("output.json") as f:
+with open("output.json", "w") as f:
     json.dump(output_table, f)
