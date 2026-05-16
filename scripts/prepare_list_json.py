@@ -22,11 +22,13 @@ with open("working/table_desc.json") as f:
 
 output_table = {}
 for i in module_keys:
-    module_arches = []
-    module_versions = []
-    module_desc = ""
+    # Need to restructure keys
+    for a, b in i:
+        module_arches = []
+        module_versions = []
+        module_desc = ""
 
-    output_table[i] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
+        output_table[a] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
 with open("output.json") as f:
     json.dump(output_table, f)
