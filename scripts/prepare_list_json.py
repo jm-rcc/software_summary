@@ -23,7 +23,7 @@ with open("working/table_desc.json") as f:
 output_table = {}
 for i in module_keys:
     # Need to restructure keys
-    for a, b in i.items:
+    for a, b in i.items():
         module_arches = []
         module_versions = []
         module_desc = ""
