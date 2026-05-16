@@ -8,9 +8,9 @@ module_keys = None
 with open("working/module_keys.json") as f:
     module_keys = json.load(f)
 
-table_arch = None
-with open("working/table_arch.json") as f:
-    table_arch = json.load(f)
+table_arches = None
+with open("working/table_arches.json") as f:
+    table_arches = json.load(f)
 
 table_version = None
 with open("working/table_version.json") as f:
