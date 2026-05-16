@@ -30,9 +30,10 @@ if __name__ == '__main__':
     # Create a list of anything that's missing from the module description table
     missing_things = []
     for i in module_keys:
-        a, b = i
-        if a not in table_desc:
-            missing_things.append(i)
+        #a, b = i
+        for a, b in i.items():
+            if a not in table_desc:
+                missing_things.append(i)
     
     # Save a list of modules with missing description
     with open("working/missing_things.txt", "w") as f:
