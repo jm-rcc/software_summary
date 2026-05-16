@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# --------------------------------------------------------------
+# Software Summary
+#
+# Prepare a list of software modules that are available on 
+# Bunya. Include versions, arches, and desctiption. 
+# Upload publicly to github.com.
+# --------------------------------------------------------------
+
+# Create log file
+OUTFILE="software_summary.latest"
+echo "Software Summary" > $(OUTFILE)
+
+# Set environment source
+source env/rocky8d.env
+
+
+echo "Gather modules..." >> $(OUTFILE)
+bash scripts/gather_modules.sh
+
+echo "Process module names..." >> $(OUTFILE)
+python3 scripts/module_keys.py
+
+echo "Check arches..." >> $(OUTFILE)
+python3 scripts/module_arch_index.py
+
+
+echo "Check versions..." >> $(OUTFILE)
+python3 scripts/module_version_index.py
+
+
+echo "Check description..." >> $(OUTFILE)
+python3 scripts/module_desc_index.py
+
+
+echo "Prepare json file..." >> $(OUTFILE)
+#python3 scripts/prepare_list_json.py
+
+
+echo "Prepare md file..." >> $(OUTFILE)
+#python3 scripts/prepare_list_md.pypwd
+
+
+echo "Add and commit files..." >> $(OUTFILE)
+#python3 scripts/commit_files.py
+
+
+echo "Done." >> $(OUTFILE)
