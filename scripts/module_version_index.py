@@ -30,7 +30,7 @@ if __name__ == '__main__':
         for i in module_keys:
             # iterate dict
             for modulename in i.keys():
-                name_tokens = i.split('/')
+                name_tokens = modulename.split('/')
                 if len(name_tokens) == 2:
                     name = name_tokens[0]
                     long_version = name_tokens[1]
