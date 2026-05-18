@@ -37,6 +37,8 @@ if __name__ == '__main__':
                     # Get the arch name
                     line_tokens = a.split('/')
                     archname = line_tokens[4].replace('_', ' ')
+                    if len(line_tokens) < 7:
+                        continue                    
                     modulename = line_tokens[6]
                     if modulename not in module_arches:
                         module_arches[modulename] = []
