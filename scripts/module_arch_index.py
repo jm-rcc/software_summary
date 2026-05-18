@@ -37,9 +37,9 @@ if __name__ == '__main__':
                     # Get the arch name
                     line_tokens = a.split('/')
                     archname = line_tokens[4].replace('_', ' ')
-                    if len(line_tokens) < 7:
-                        continue                    
-                    modulename = line_tokens[6]
+                    #if len(line_tokens) < 7:
+                    #    continue                    
+                    modulename = line_tokens[0]
                     if modulename not in module_arches:
                         module_arches[modulename] = []
                     if archname not in module_arches[modulename]:
@@ -52,13 +52,13 @@ if __name__ == '__main__':
             line = line.strip()
             if not os.path.isfile(line):
                 continue
-            if len(line.split('/')) < 7:
+            if len(line.split('/')) < 8:
                 continue
             if "/modules/" in line:
                 a, b = line.split("/modules/")
                 if "/" in b:
                     # Get the arch name
-                    modulename = line.split('/')[6]
+                    modulename = line.split('/')[7]
                     if modulename not in module_arches:
                         module_arches[modulename] = []
                     if archname not in module_arches[modulename]:
