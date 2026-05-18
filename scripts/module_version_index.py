@@ -26,20 +26,23 @@ if __name__ == '__main__':
 
     with open("working/module_keys.json") as f:
         module_keys = json.load(f)
+        # iterate list
         for i in module_keys:
-            name_tokens = i.split('/')
-            if len(name_tokens) == 2:
-                name = name_tokens[0]
-                long_version = name_tokens[1]
-                if '-' in long_version:
-                    version = long_version.split('-')[0]
-                else:
-                    version = long_version
+            # iterate dict
+            for modulename in i.keys():
+                name_tokens = i.split('/')
+                if len(name_tokens) == 2:
+                    name = name_tokens[0]
+                    long_version = name_tokens[1]
+                    if '-' in long_version:
+                        version = long_version.split('-')[0]
+                    else:
+                        version = long_version
 
-                if name not in version_table:
-                    version_table[name] = []
-                
-                version_table[name].append(version)
+                    if name not in version_table:
+                        version_table[name] = []
+                    
+                    version_table[name].append(version)
 
     with open("working/module_version.json") as f:
         json.dump(version_table, f)
