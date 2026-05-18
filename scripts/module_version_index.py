@@ -8,7 +8,38 @@
 # Generate a table of module names : versions. 
 # --------------------------------------------------------------
 
+import os
+import json
+
 if __name__ == '__main__':
     # Start the process
     print('start')
     
+    # Read allmodules and noarchmodules
+    # Parse module name into "name" and "version" and "extra_version"
+    # Create a table of name : [versions]
+    # Save version table
+
+    # .
+
+    version_table = {}
+
+    with open("working/module_keys.json") as f:
+        module_keys = json.load(f)
+        for i in module_keys.keys():
+            name_tokens = i.split('/')
+            if len(name_tokens) == 2:
+                name = name_tokens[0]
+                long_version = name_tokens[1]
+                if '-' in long_version:
+                    version = long_version.split('-')[0]
+                else:
+                    version = long_version
+
+                if name not in version_table:
+                    version_table[name] = []
+                
+                version_table[name].append(version)
+
+    with open("working/module_version.json") as f:
+        json.dump(version_table, f)
