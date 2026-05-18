@@ -30,10 +30,15 @@ for i in module_keys:
         else:
             continue
 
+        module_arches = []
         if name in table_arches:
             module_arches = table_arches[name]
+            
+        module_versions = []
         if name in table_version:
             module_versions = table_version[name]
+
+        module_desc = ""
         if name in table_desc:
             module_desc = table_desc[name]
 
