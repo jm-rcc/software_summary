@@ -39,6 +39,9 @@ if __name__ == '__main__':
                     else:
                         version = long_version
 
+                    if version.startswith('.'): 
+                        version = version[1:]
+
                     if name not in version_table:
                         version_table[name] = []
                     
