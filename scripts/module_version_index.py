@@ -44,5 +44,5 @@ if __name__ == '__main__':
                     
                     version_table[name].append(version)
 
-    with open("working/module_version.json") as f:
+    with open("working/table_version.json", "w") as f:
         json.dump(version_table, f)
