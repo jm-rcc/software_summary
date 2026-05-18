@@ -1,0 +1,5 @@
+src = 'rocky8d'
+arches = []
+output = 'out8d'
+upstream = ''
+token_env = ENV_TOKEN

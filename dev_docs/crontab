@@ -1,0 +1,7 @@
+*/20 * * * * cd /local/home/joshm/jobcop ; ./jobcop
+*/20 * * * * cd /local/home/joshm/prom_query ; python3 zero_check.py
+*/10 * * * * cd /local/home/joshm/jobflow ; python3 jobflow.py
+*/10 * * * * cd /local/home/joshm/ ; python3 qm3.py
+
+
+*/20 * * * * cd /local/home/joshm/software_summary ; ./software_summary

@@ -14,6 +14,8 @@ echo "Software Summary" > $OUTFILE
 
 # Set environment source
 source env/rocky8d.env
+echo $SOFTWARESUMMARY_MODULE_PATH
+echo $SOFTWARESUMMARY_NOARCH_PATH
 
 
 echo "Gather modules..." >> $OUTFILE
