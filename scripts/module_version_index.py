@@ -45,7 +45,9 @@ if __name__ == '__main__':
                     if name not in version_table:
                         version_table[name] = []
                     
-                    version_table[name].append(version)
+                    if version not in version_table[name]:
+                        version_table[name].append(version)
+                        version_table[name].sort()
 
     with open("working/table_version.json", "w") as f:
         json.dump(version_table, f)
