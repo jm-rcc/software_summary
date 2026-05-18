@@ -37,7 +37,7 @@ if __name__ == '__main__':
                     # Get the arch name
                     line_tokens = a.split('/')
                     archname = line_tokens[4].replace('_', ' ')
-                    modulename = a.split("/")[0]
+                    modulename = line_tokens[6]
                     if modulename not in module_arches:
                         module_arches[modulename] = []
                     if archname not in module_arches[modulename]:
@@ -54,7 +54,7 @@ if __name__ == '__main__':
                 a, b = line.split("/modules/")
                 if "/" in b:
                     # Get the arch name
-                    modulename = a.split("/")[0]
+                    modulename = line_tokens[6]
                     if modulename not in module_arches:
                         module_arches[modulename] = []
                     if archname not in module_arches[modulename]:
