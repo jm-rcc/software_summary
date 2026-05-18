@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     with open("working/module_keys.json") as f:
         module_keys = json.load(f)
-        for i in module_keys.keys():
+        for i in module_keys:
             name_tokens = i.split('/')
             if len(name_tokens) == 2:
                 name = name_tokens[0]
