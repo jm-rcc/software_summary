@@ -34,7 +34,7 @@ for i in module_keys:
             module_arches = table_arches[name]
         if name in table_version:
             module_versions = table_version[name]
-        if name in module_desc:
+        if name in table_desc:
             module_desc = table_desc[name]
 
         output_table[name] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
