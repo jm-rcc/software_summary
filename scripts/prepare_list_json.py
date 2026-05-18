@@ -20,15 +20,27 @@ table_desc = None
 with open("working/table_desc.json") as f:
     table_desc = json.load(f)
 
+        for i in module_keys:
+            # iterate dict
+            for modulename in i.keys():
+                name_tokens = modulename.split('/')
+                if len(name_tokens) == 2:
+                    name = name_tokens[0]
 output_table = {}
 for i in module_keys:
     # Need to restructure keys
-    for a, b in i.items():
+    for modulename, modulepath in i.items():
+        name_tokens = modulename.split('/')
+        if len(name_tokens) == 2:
+            name = name_tokens[0]
+        else:
+            continue
+
         module_arches = []
         module_versions = []
         module_desc = ""
 
-        output_table[a] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
+        output_table[name] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
 with open("output.json", "w") as f:
     json.dump(output_table, f, indent = 4)
