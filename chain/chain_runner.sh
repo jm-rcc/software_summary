@@ -8,6 +8,8 @@
 #SBATCH --time=0:30:00
 #SBATCH --qos=debug
 #SBATCH --partition=general
+#SBATCH -o job_output.txt
+#SBATCH -e job_error.txt
 
 
 # --- Load config ---
