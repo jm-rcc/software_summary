@@ -20,4 +20,5 @@ if [ ! -f "$RUNNER" ]; then
 fi
 
 # Submit, pinning the working directory to where the scripts live
-sbatch --chdir="$SCRIPT_DIR" "$RUNNER" "$CONFIG_FILE"
+#sbatch --chdir="$SCRIPT_DIR" "$RUNNER" "$CONFIG_FILE"
+sbatch "$RUNNER" "$CONFIG_FILE"
