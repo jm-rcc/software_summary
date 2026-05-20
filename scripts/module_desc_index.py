@@ -36,6 +36,11 @@ if __name__ == '__main__':
                 missing_things.append(i)
     
     # Save a list of modules with missing description
-    with open("working/missing_things.txt", "w") as f:
-        json.dump(missing_things, f)
+    #with open("working/missing_things.txt", "w") as f:
+    #    json.dump(missing_things, f)
+
+    with open("working/missing_desc_list.txt", "w") as f:
+        for i in missing_things:
+            for modulename, modulepath in i.items():
+                f.write(f"{modulename}\n")
 
