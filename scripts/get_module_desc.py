@@ -26,7 +26,7 @@ module("use", "/sw/auto/rocky8d/xeonsp4/modules/all")
 module("use", "/sw/auto/rocky8d/xeonsp4_h100/modules/all")
 
 # ONly want on e module name
-modulename = ""
+modulename = sys.argv[1]
 
 # Use lmod to get the module help
 def get_lmod_help(filepath):

@@ -1,3 +1,3 @@
 #!/bin/bash
 ITEM="$1"
-python3 my_pipeline.py --input "$ITEM"
+python3 get_module_desc.py --input "$ITEM"
