@@ -46,7 +46,7 @@ LOCK_FILE="${LOCK_FILE:-${LIST_FILE}.lock}"
 ) 200>"$LOCK_FILE"
 
 ITEM=$(cat /tmp/current_item_$$ 2>/dev/null)
-rm -f /tmp/current_item_$$
+#rm -f /tmp/current_item_$$
 
 if [ -z "$ITEM" ]; then
   echo "No item to process, stopping chain."
@@ -80,7 +80,8 @@ echo "Done processing: $ITEM"
 if [ -s "$LIST_FILE" ]; then
   echo "Items remain, submitting next job..."
   SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
-  sbatch --chdir="$SCRIPT_DIR" "$SCRIPT_DIR/chain_runner.sh" "$CONFIG_FILE"
+  #sbatch --chdir="$SCRIPT_DIR" "$SCRIPT_DIR/chain_runner.sh" "$CONFIG_FILE"
+  sbatch chain_runner.sh chain.conf
 else
   echo "List exhausted, chain complete."
 fi
