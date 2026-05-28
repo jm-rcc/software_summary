@@ -52,8 +52,8 @@ def get_lmod_whatis(filepath):
         if line.strip() == "": continue
         if line.startswith(filepath):
             first_colon = line.find(':')
-            truncated_line = line[first_colon + 1:].strip()
-        lines.append(truncated_line)
+            line = line[first_colon + 1:].strip()
+        lines.append(line)
     return "\n".join(lines)
 
 #whatis = get_lmod_whatis("lit/18.1.2-gcccore-12.3.0")
