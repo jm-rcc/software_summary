@@ -48,8 +48,9 @@ def get_lmod_whatis(filepath):
     b = subprocess.run([f"module whatis {filepath}"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     textout = b.stdout.decode('utf-8')
     for line in textout.split('\n'):
+        line = line.strip()
         if line.startswith('------'): continue
-        if line.strip() == "": continue
+        if line == "": continue
         if line.startswith(filepath):
             first_colon = line.find(':')
             line = line[first_colon + 1:].strip()
