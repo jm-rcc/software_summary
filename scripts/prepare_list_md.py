@@ -44,10 +44,10 @@ for i in module_keys:
 
         #output_page[name] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
-        output_page += "# {name}\n"
-        output_page += "Architectures: {module_arches}\n\n"
-        output_page += "Versions: {module_versions}\n\n"
-        output_page += "Additonal module information: {module_desc}\n\n"
+        output_page += f"# {name}\n"
+        output_page += f"Architectures: {module_arches}\n\n"
+        output_page += f"Versions: {module_versions}\n\n"
+        output_page += f"Additonal module information: {module_desc}\n\n"
 
 with open("output.md", "w") as f:
     f.write(output_page)
