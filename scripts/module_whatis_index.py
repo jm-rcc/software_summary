@@ -48,7 +48,7 @@ def get_lmod_whatis(filepath):
     b = subprocess.run([f"module whatis {filepath}"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     textout = b.stdout.decode('utf-8')
     for line in textout.split('\n'):
-        if line.startswith('-'): continue
+        if line.startswith('------'): continue
         if line.strip() == "": continue
         truncated_line = line[len(filepath) + 2:].strip()
         lines.append(truncated_line)
