@@ -41,7 +41,7 @@ python3 scripts/prepare_list_json.py
 
 
 echo "Prepare md file..." >> $OUTFILE
-#python3 scripts/prepare_list_md.pypwd
+python3 scripts/prepare_list_md.py
 
 
 echo "Add and commit files..." >> $OUTFILE
