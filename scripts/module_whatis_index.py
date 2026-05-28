@@ -50,7 +50,9 @@ def get_lmod_whatis(filepath):
     for line in textout.split('\n'):
         if line.startswith('------'): continue
         if line.strip() == "": continue
-        truncated_line = line[len(filepath) + 2:].strip()
+        if line.startswith(filepath):
+            first_colon = line.find(':')
+            truncated_line = line[first_colon + 1:].strip()
         lines.append(truncated_line)
     return "\n".join(lines)
 
