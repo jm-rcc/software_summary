@@ -39,8 +39,8 @@ def read_modules(filename):
                 if "/" in b:
                     all_modules.append([b, line])
 
-read_modules("allmodules.txt")
-read_modules("noarchmodules.txt")
+read_modules("working/allmodules.txt")
+read_modules("working/noarchmodules.txt")
 
 # Use lmod to get the module help
 def get_lmod_whatis(filepath):
