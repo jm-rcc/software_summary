@@ -20,8 +20,6 @@ if __name__ == '__main__':
     # Create a table of name : [versions]
     # Save version table
 
-    # .
-
     version_table = {}
 
     with open("working/module_keys.json") as f:
