@@ -4,25 +4,28 @@
 import os
 import json
 
+working_dir = os.environ["MODS_WORKING_PATH"]
+output_dir = os.environ["MODS_OUTPUT_VERSION_PATH"]
+
 module_keys = None
-with open("working/module_keys.json") as f:
+with open(f"{working_dir}/module_keys.json") as f:
     module_keys = json.load(f)
 
 table_arches = None
-with open("working/table_arches.json") as f:
+with open(f"{working_dir}/table_arches.json") as f:
     table_arches = json.load(f)
 
 table_version = None
-with open("working/table_version.json") as f:
+with open(f"{working_dir}/table_version.json") as f:
     table_version = json.load(f)
 
 table_desc = None
-with open("working/table_desc.json") as f:
+with open(f"{working_dir}/table_desc.json") as f:
     table_desc = json.load(f)
 
 output_page = ""
 for i in module_keys:
-    # Need to restructure keys
+
     for modulename, modulepath in i.items():
         name_tokens = modulename.split('/')
         if len(name_tokens) == 2:
@@ -45,9 +48,9 @@ for i in module_keys:
         #output_page[name] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
         output_page += f"# {name}\n"
-        output_page += f"Architectures: {module_arches}\n\n"
-        output_page += f"Versions: {module_versions}\n\n"
+        output_page += f"Versions: {", ".join(module_versions)}\n\n"
         output_page += f"Additonal module information: {module_desc}\n\n"
+        output_page += f"HPC Architectures: {module_arches}\n\n"
 
-with open("output.md", "w") as f:
+with open(f"{output_dir}/module_index.md", "w") as f:
     f.write(output_page)
