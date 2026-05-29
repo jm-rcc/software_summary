@@ -12,19 +12,19 @@ import os
 import json
 
 if __name__ == '__main__':
-    # Start the process
-    print('start')
+
+    working_dir = os.environ["MODS_WORKING_PATH"]
     
     # Read the raw files and create a list of module descriptions
 
     # Load the module keys
     module_keys = None
-    with open("working/module_keys.json") as f:
+    with open(f"{working_dir}/module_keys.json") as f:
         module_keys = json.load(f)
 
     # Load the existing module table
     table_desc = None
-    with open("working/table_desc.json") as f:
+    with open(f"{working_dir}/table_desc.json") as f:
         table_desc = json.load(f)
 
     # Create a list of anything that's missing from the module description table
@@ -35,11 +35,7 @@ if __name__ == '__main__':
             if a not in table_desc:
                 missing_things.append(i)
     
-    # Save a list of modules with missing description
-    #with open("working/missing_things.txt", "w") as f:
-    #    json.dump(missing_things, f)
-
-    with open("working/missing_desc_list.txt", "w") as f:
+    with open(f"{working_dir}/missing_desc_list.txt", "w") as f:
         for i in missing_things:
             for modulename, modulepath in i.items():
                 f.write(f"{modulename}\n")

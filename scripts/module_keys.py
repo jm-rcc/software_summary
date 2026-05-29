@@ -9,7 +9,9 @@ import json
 
 all_modules = []
 
-with open("working/allmodules.txt") as f:
+working_dir = os.environ["MODS_WORKING_PATH"]
+
+with open(f"{working_dir}/allmodules.txt") as f:
     for line in f.readlines():
         line = line.strip()
         if "/all/" in line:
@@ -17,7 +19,7 @@ with open("working/allmodules.txt") as f:
             if "/" in b:
                 all_modules.append({b: line})
 
-with open("working/noarchmodules.txt") as f:
+with open(f"{working_dir}/noarchmodules.txt") as f:
     archname = 'noarch'
     for line in f.readlines():
         line = line.strip()
@@ -28,5 +30,5 @@ with open("working/noarchmodules.txt") as f:
             if "/" in b:
                 all_modules.append({b: line})
 
-with open("working/module_keys.json", "w") as f:
+with open(f"{working_dir}/module_keys.json", "w") as f:
     json.dump(all_modules, f)

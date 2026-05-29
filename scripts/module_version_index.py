@@ -12,8 +12,8 @@ import os
 import json
 
 if __name__ == '__main__':
-    # Start the process
-    print('start')
+    
+    working_dir = os.environ["MODS_WORKING_PATH"]
     
     # Read allmodules and noarchmodules
     # Parse module name into "name" and "version" and "extra_version"
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     version_table = {}
 
-    with open("working/module_keys.json") as f:
+    with open(f"{working_dir}/module_keys.json") as f:
         module_keys = json.load(f)
         # iterate list
         for i in module_keys:
@@ -47,5 +47,5 @@ if __name__ == '__main__':
                         version_table[name].append(version)
                         version_table[name].sort()
 
-    with open("working/table_version.json", "w") as f:
+    with open(f"{working_dir}/table_version.json", "w") as f:
         json.dump(version_table, f)
