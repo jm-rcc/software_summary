@@ -5,7 +5,7 @@ import os
 import json
 
 working_dir = os.environ["MODS_WORKING_PATH"]
-output_dir = os.environ["MODS_OUTPUT_PATH"]
+output_dir = os.environ["MODS_OUTPUT_VERSION_PATH"]
 
 module_keys = None
 with open(f"{working_dir}/module_keys.json") as f:
@@ -47,5 +47,5 @@ for i in module_keys:
 
         output_table[name] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
-with open(f"{output_dir}/output.json", "w") as f:
+with open(f"{output_dir}/module_index.json", "w") as f:
     json.dump(output_table, f, indent = 4)
