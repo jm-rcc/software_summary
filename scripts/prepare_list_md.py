@@ -48,7 +48,7 @@ for i in module_keys:
         #output_page[name] = {"architectures":module_arches, "versions":module_versions, "description":module_desc}
 
         output_page += f"# {name}\n"
-        output_page += f"Versions: {", ".join(module_versions)}\n\n"
+        output_page += f"Versions: {', '.join(module_versions)}\n\n"
         output_page += f"Additonal module information: {module_desc}\n\n"
         output_page += f"HPC Architectures: {module_arches}\n\n"
 
