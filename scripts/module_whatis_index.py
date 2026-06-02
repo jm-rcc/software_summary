@@ -82,8 +82,10 @@ if __name__ == '__main__':
         name_tokens = modulename.split('/')
         if len(name_tokens) == 2:
             name = name_tokens[0]
+            whatis = get_lmod_whatis(modulename)
+            if whatis == "": continue
             if name not in help_index_data:
-                help_index_data[name] = get_lmod_whatis(modulename)
+                help_index_data[name] = whatis
                 unsaved_changes = True
 
     # 3. Save help index if it has been updated
