@@ -47,6 +47,9 @@ if __name__ == '__main__':
     read_modules(f"{working_dir}/allmodules.txt")
     read_modules(f"{working_dir}/noarchmodules.txt")
 
+    modules_errored = []
+    modules_indexed = []
+
     # Use lmod to get the module help
     def get_lmod_whatis(filepath):
         lines = []
@@ -61,6 +64,8 @@ if __name__ == '__main__':
                 first_colon = line.find(':')
                 line = line[first_colon + 1:].strip()
             lines.append(line)
+        if lines == []: modules_errored.append(filepath)
+        else: modules_indexed.append(filepath)
         return "\n".join(lines)
 
     # 1. Load the existing help index
@@ -93,3 +98,8 @@ if __name__ == '__main__':
     if unsaved_changes:
         with open(f"{working_dir}/table_desc.json", "w") as f:
             json.dump(help_index_data, f, ensure_ascii=False, indent=4)
+
+    print("ERROR'd:")
+    for i in modules_errored: print(i)
+    print("ADD'd")
+    for i in modules_indexed: print(i)
