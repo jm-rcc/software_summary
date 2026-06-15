@@ -55,6 +55,7 @@ if __name__ == '__main__':
         for line in textout.split('\n'):
             line = line.strip()
             if line.startswith('------'): continue
+            if line.startswith('ERROR:'): continue
             if line == "": continue
             if line.startswith(filepath):
                 first_colon = line.find(':')
@@ -68,7 +69,7 @@ if __name__ == '__main__':
         with open(f"{working_dir}/table_desc.json") as f:
             help_index_data = json.load(f)
     except FileNotFoundError as e:
-        print(e)
+        print(f"Missing file: Error: {e}")
     except PermissionError:
         print("Permission denied: table_desc.json")
     except Exception as e:
