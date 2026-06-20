@@ -5,7 +5,7 @@ import os
 import json
 
 working_dir = os.environ["MODS_WORKING_PATH"]
-output_dir = os.environ["MODS_OUTPUT_VERSION_PATH"]
+output_dir = os.environ["MODS_OUTPUT_VERSION_REPO_PATH"]
 
 module_keys = None
 with open(f"{working_dir}/module_keys.json") as f:

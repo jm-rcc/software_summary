@@ -30,6 +30,20 @@ if __name__ == '__main__':
 
     working_dir = os.environ["MODS_WORKING_PATH"]
     module_dir = os.environ["MODS_MODULE_PATH"]
+    module_noarch_dir = os.environ["MODS_NOARCH_PATH"]
+
+    print(f"module use {module_dir}/epyc3/modules/all")
+    print(f"module use {module_dir}/epyc3_a100/modules/all")
+    print(f"module use {module_dir}/epyc3_h100/modules/all")
+    print(f"module use {module_dir}/epyc3_l40/modules/all")
+    print(f"module use {module_dir}/epyc3_mi210/modules/all")
+    print(f"module use {module_dir}/epyc4/modules/all")
+    print(f"module use {module_dir}/epyc4_a16/modules/all")
+    print(f"module use {module_dir}/epyc4_h100/modules/all")
+    print(f"module use {module_dir}/epyc4_l40s/modules/all")
+    print(f"module use {module_dir}/epyc4_mi210/modules/all")
+    print(f"module use {module_dir}/xeonsp4/modules/all")
+    print(f"module use {module_dir}/xeonsp4_h100/modules/all")
 
     subprocess.run([f"module use {module_dir}/epyc3/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     subprocess.run([f"module use {module_dir}/epyc3_a100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -42,19 +56,48 @@ if __name__ == '__main__':
     subprocess.run([f"module use {module_dir}/epyc4_l40s/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     subprocess.run([f"module use {module_dir}/epyc4_mi210/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     subprocess.run([f"module use {module_dir}/xeonsp4/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/xeonsp4_h100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    c = subprocess.run([f"module use {module_dir}/xeonsp4_h100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #textout = c.stdout.decode('utf-8')
+    #texterr = c.stderr.decode('utf-8')
+    #print("OUT:    ", textout)
+    #print("ERR:    ", texterr)
 
-    read_modules(f"{working_dir}/allmodules.txt")
-    read_modules(f"{working_dir}/noarchmodules.txt")
+    #read_modules(f"{working_dir}/allmodules.txt")
+    #read_modules(f"{working_dir}/noarchmodules.txt")
+    with open(f"{working_dir}/allmodules.txt") as f:
+        for line in f.readlines():
+            line = line.strip()
+            if "/all/" in line:
+                a, b = line.split("/all/")
+                if "/" in b:
+                    all_modules.append([b, line])
+
+    with open(f"{working_dir}/noarchmodules.txt") as f:
+        archname = 'noarch'
+        for line in f.readlines():
+            line = line.strip()
+            if not os.path.isfile(line):
+                continue
+            if "/modules/" in line:
+                a, b = line.split("/modules/")
+                if "/" in b:
+                    all_modules.append([b, line])
 
     modules_errored = []
     modules_indexed = []
 
+    module_use_string = f"module use {module_noarch_dir}/rcc/modules; module use {module_dir}/epyc3/modules/all; module use {module_dir}/epyc3_a100/modules/all; module use {module_dir}/epyc3_h100/modules/all; module use {module_dir}/epyc3_l40/modules/all;"
+
     # Use lmod to get the module help
     def get_lmod_whatis(filepath):
         lines = []
-        b = subprocess.run([f"module whatis {filepath}"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        textout = b.stdout.decode('utf-8')
+        #b = subprocess.run([f"echo $MODULEPATH"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        b = subprocess.run([f"{module_use_string} module whatis {filepath}"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #b = subprocess.run([f"module spider {filepath}"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        textout = b.stderr.decode('utf-8')
+        #texterr = b.stderr.decode('utf-8')
+        #print("OUT:    ", textout)
+        #print("ERR:    ", texterr)
         for line in textout.split('\n'):
             line = line.strip()
             if line.startswith('------'): continue
@@ -88,9 +131,9 @@ if __name__ == '__main__':
         name_tokens = modulename.split('/')
         if len(name_tokens) == 2:
             name = name_tokens[0]
-            whatis = get_lmod_whatis(modulename)
-            if whatis == "": continue
             if name not in help_index_data:
+                whatis = get_lmod_whatis(modulename)
+                if whatis == "": continue
                 help_index_data[name] = whatis
                 unsaved_changes = True
 
@@ -103,3 +146,5 @@ if __name__ == '__main__':
     for i in modules_errored: print(i)
     print("ADD'd")
     for i in modules_indexed: print(i)
+
+    #print(help_index_data)
