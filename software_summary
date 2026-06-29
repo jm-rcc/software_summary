@@ -15,8 +15,6 @@ source env/rocky8d.env
 OUTFILE=module_summary.latest
 echo "Module Summary" > $OUTFILE
 
-module
-
 # Find all modules and create a list in the working path
 echo "Gather modules..." >> $OUTFILE
 bash scripts/gather_modules.sh
