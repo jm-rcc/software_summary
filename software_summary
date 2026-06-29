@@ -53,8 +53,7 @@ python3 scripts/prepare_list_md.py
 
 # Change to output directory
 cd $MODS_OUTPUT_REPO_PATH
-git remote set-url origin https://${GITHUB_TOKEN}@github.com/jm-rcc/module_index.git
-git pull origin main
+git pull
 git add versions/rocky8d/*
 git add versions/rocky9a/*
 
