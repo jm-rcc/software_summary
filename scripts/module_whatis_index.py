@@ -107,7 +107,10 @@ if __name__ == '__main__':
                 first_colon = line.find(':')
                 line = line[first_colon + 1:].strip()
             lines.append(line)
-        if lines == []: modules_errored.append(filepath)
+        if lines == []: 
+            modules_errored.append(filepath)
+            print(f"Error text:    {filepath}")
+            print(textout)
         else: modules_indexed.append(filepath)
         return "\n".join(lines)
 
