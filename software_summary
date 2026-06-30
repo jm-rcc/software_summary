@@ -66,8 +66,4 @@ git add $MODS_OUTPUT_VERSION_REPO_PATH/*
 git commit -m "Automated commit"
 git push origin main
 
-<<<<<<< HEAD
 echo "Done."
-=======
-echo "Done." >> $OUTFILE
->>>>>>> 3f1c8691a5d722c300a18f48101b65d02b57994a
