@@ -41,6 +41,12 @@ then
     mkdir -p $MODS_WORKING_PATH
 fi
 
+# Intermediate directory for working -> output
+if [ ! -d $MODS_OUTFILE_PATH ]
+then
+    mkdir -p $MODS_OUTFILE_PATH
+fi
+
 # Make sure output dirs exist
 if [ ! -d $MODS_OUTPUT_VERSION_PATH ]
 then
