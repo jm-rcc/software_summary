@@ -60,6 +60,9 @@ python3 scripts/prepare_lists.py
 # Change to output directory
 cd $MODS_OUTPUT_REPO_PATH
 git pull origin main
+echo "cp"
+echo $MODS_OUTFILE_PATH
+echo $MODS_OUTPUT_VERSION_REPO_PATH
 cp $MODS_OUTFILE_PATH/* $MODS_OUTPUT_VERSION_REPO_PATH/
 git add $MODS_OUTPUT_VERSION_PATH/*
 
