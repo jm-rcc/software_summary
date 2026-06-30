@@ -13,12 +13,7 @@
 source env/rocky8d.env
 
 # Create log file
-<<<<<<< HEAD
 echo "Module Summary"
-=======
-OUTFILE=module_summary.latest
-echo "Module Summary" > $OUTFILE
->>>>>>> 3f1c8691a5d722c300a18f48101b65d02b57994a
 
 # Find all modules and create a list in the working path
 echo "Gather modules..."
