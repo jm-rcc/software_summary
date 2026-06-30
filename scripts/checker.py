@@ -37,11 +37,11 @@ for i, j in moduledata.items():
     #if "Description:" not in new_json[i]:
     #    new_json[i]["Description:"] = j[""]
 
-print(f"{output_dir}/new_output.json")
+print(f"{output_dir}/module_index.json")
 with open(f"{output_dir}/new_output.json", "w") as f:
     json.dump(new_json, f, indent = 4)
 
-print(f"{output_dir}/new_output.md")
+print(f"{output_dir}/module_index.md")
 with open(f"{output_dir}/new_output.md", "w") as f:
     f.write(f"# Modules\n\n")
     for i, j in new_json.items():
