@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 
 # --------------------------------------------------------------
 # Module Summary
@@ -9,32 +9,30 @@
 # --------------------------------------------------------------
 
 # Set environment source
+# TODO config
 source env/rocky8d.env
 
 # Create log file
-OUTFILE=module_summary.latest
-echo "Module Summary" > $OUTFILE
-
-module
+echo "Module Summary"
 
 # Find all modules and create a list in the working path
-echo "Gather modules..." >> $OUTFILE
+echo "Gather modules..."
 bash scripts/gather_modules.sh
 
 # Process the module names
-echo "Process module names..." >> $OUTFILE
+echo "Process module names..."
 python3 scripts/module_keys.py
 
 # Create a table of modules : arches
-echo "Check arches..." >> $OUTFILE
+echo "Check arches..."
 python3 scripts/module_arch_index.py
 
 # Create a table of modules : versions
-echo "Check versions..." >> $OUTFILE
+echo "Check versions..."
 python3 scripts/module_version_index.py
 
 # Create a table of modules : whatis
-echo "Check description..." >> $OUTFILE
+echo "Check description..."
 python3 scripts/module_whatis_index.py
 
 # Make sure output dirs exist
@@ -44,23 +42,25 @@ then
 fi
 
 # Create the json index of all modules with all available info
-echo "Prepare json file..." >> $OUTFILE
+echo "Prepare json file..."
 python3 scripts/prepare_list_json.py
 
 # Create the md list of all modules with all available info
-echo "Prepare md file..." >> $OUTFILE
+echo "Prepare md file..."
 python3 scripts/prepare_list_md.py
+
+# added.
+python3 scripts/checker.py
 
 # Change to output directory
 cd $MODS_OUTPUT_REPO_PATH
-git remote set-url origin https://${GITHUB_TOKEN}@github.com/jm-rcc/module_index.git
 git pull origin main
-git add versions/rocky8d/*
-git add versions/rocky9a/*
+cp $MODS_OUTFILE_PATH/* $MODS_OUTPUT_VERSION_REPO_PATH/*
 
+echo "Add and commit files..."
+git add $MODS_OUTPUT_VERSION_REPO_PATH/*
 # Commit to github
-echo "Add and commit files..." >> $OUTFILE
 git commit -m "Automated commit"
 git push origin main
 
-echo "Done." >> $OUTFILE
+echo "Done."
