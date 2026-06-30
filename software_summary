@@ -13,7 +13,12 @@
 source env/rocky8d.env
 
 # Create log file
+<<<<<<< HEAD
 echo "Module Summary"
+=======
+OUTFILE=module_summary.latest
+echo "Module Summary" > $OUTFILE
+>>>>>>> 3f1c8691a5d722c300a18f48101b65d02b57994a
 
 # Find all modules and create a list in the working path
 echo "Gather modules..."
@@ -56,6 +61,9 @@ python3 scripts/checker.py
 cd $MODS_OUTPUT_REPO_PATH
 git pull origin main
 cp $MODS_OUTFILE_PATH/* $MODS_OUTPUT_VERSION_REPO_PATH/*
+git pull
+git add versions/rocky8d/*
+git add versions/rocky9a/*
 
 echo "Add and commit files..."
 git add $MODS_OUTPUT_VERSION_REPO_PATH/*
@@ -63,4 +71,8 @@ git add $MODS_OUTPUT_VERSION_REPO_PATH/*
 git commit -m "Automated commit"
 git push origin main
 
+<<<<<<< HEAD
 echo "Done."
+=======
+echo "Done." >> $OUTFILE
+>>>>>>> 3f1c8691a5d722c300a18f48101b65d02b57994a
