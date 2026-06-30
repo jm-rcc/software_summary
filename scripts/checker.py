@@ -21,7 +21,7 @@ with open(f"{output_dir}/module_index.json") as f:
                 if line.startswith(label):
                     if len(moduledata[k][label]) > 0:
                         # Skip if that label has already been captured.
-                        caught_label="Skip"
+                        caught_label = "Skip"
                         continue
                     caught_label = label
                     line = line[len(label):]
@@ -41,13 +41,14 @@ print(f"{output_dir}/new_output.json")
 with open(f"{output_dir}/new_output.json", "w") as f:
     json.dump(new_json, f, indent = 4)
 
-print(f"{output_dir}/new_output.json")
+print(f"{output_dir}/new_output.md")
 with open(f"{output_dir}/new_output.md", "w") as f:
+    f.write(f"# Modules\n\n")
     for i, j in new_json.items():
-        f.write(f"## {i}\n")
+        f.write(f"### {i}\n")
         for m, n in j.items():
             n = n.strip()
             if len(n):
-                f.write(f"### {m.strip(':')}\n")
+                f.write(f"#### {m.strip(':')}\n")
                 f.write(f"{n}\n")
 
