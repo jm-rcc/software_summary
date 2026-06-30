@@ -1,7 +1,7 @@
 import json
 import os
 
-output_dir = os.environ["MODS_OUTPUT_VERSION_REPO_PATH"]
+output_dir = os.environ["MODS_OUTFILE_PATH"]
 
 labels = ["Description:", "Homepage:", "URL:", "Extensions:"]
 
@@ -48,4 +48,3 @@ with open(f"{output_dir}/new_output.md", "w") as f:
             if len(n):
                 f.write(f"#### {m.strip(':')}\n")
                 f.write(f"{n}\n")
-
