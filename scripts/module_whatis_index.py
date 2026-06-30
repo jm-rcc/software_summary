@@ -17,6 +17,8 @@ import json
 # [module name, full path]
 all_modules = []
 
+# clinicalomx is not available
+
 def read_modules(filename):
     with open(filename) as f:
         for line in f.readlines():
@@ -32,38 +34,6 @@ if __name__ == '__main__':
     module_dir = os.environ["MODS_MODULE_PATH"]
     module_noarch_dir = os.environ["MODS_NOARCH_PATH"]
 
-    print(f"module use {module_dir}/epyc3/modules/all")
-    print(f"module use {module_dir}/epyc3_a100/modules/all")
-    print(f"module use {module_dir}/epyc3_h100/modules/all")
-    print(f"module use {module_dir}/epyc3_l40/modules/all")
-    print(f"module use {module_dir}/epyc3_mi210/modules/all")
-    print(f"module use {module_dir}/epyc4/modules/all")
-    print(f"module use {module_dir}/epyc4_a16/modules/all")
-    print(f"module use {module_dir}/epyc4_h100/modules/all")
-    print(f"module use {module_dir}/epyc4_l40s/modules/all")
-    print(f"module use {module_dir}/epyc4_mi210/modules/all")
-    print(f"module use {module_dir}/xeonsp4/modules/all")
-    print(f"module use {module_dir}/xeonsp4_h100/modules/all")
-
-    subprocess.run([f"module use {module_dir}/epyc3/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc3_a100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc3_h100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc3_l40/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc3_mi210/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc4/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc4_a16/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc4_h100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc4_l40s/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/epyc4_mi210/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    subprocess.run([f"module use {module_dir}/xeonsp4/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    c = subprocess.run([f"module use {module_dir}/xeonsp4_h100/modules/all"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #textout = c.stdout.decode('utf-8')
-    #texterr = c.stderr.decode('utf-8')
-    #print("OUT:    ", textout)
-    #print("ERR:    ", texterr)
-
-    #read_modules(f"{working_dir}/allmodules.txt")
-    #read_modules(f"{working_dir}/noarchmodules.txt")
     with open(f"{working_dir}/allmodules.txt") as f:
         for line in f.readlines():
             line = line.strip()
@@ -86,7 +56,7 @@ if __name__ == '__main__':
     modules_errored = []
     modules_indexed = []
 
-    module_use_string = f"module use {module_noarch_dir}/clinicalomx/modules; module use {module_noarch_dir}/eait/modules; module use {module_noarch_dir}/imb/modules; module use {module_noarch_dir}/neuro/modules; module use {module_noarch_dir}/qcif/modules; module use {module_noarch_dir}/rcc/modules; module use {module_dir}/epyc3/modules/all; module use {module_dir}/epyc3_a100/modules/all; module use {module_dir}/epyc3_h100/modules/all; module use {module_dir}/epyc3_l40/modules/all;"
+    module_use_string = f"module use {module_noarch_dir}/eait/modules; module use {module_noarch_dir}/imb/modules; module use {module_noarch_dir}/neuro/modules; module use {module_noarch_dir}/qcif/modules; module use {module_noarch_dir}/rcc/modules; module use {module_dir}/epyc3/modules/all; module use {module_dir}/epyc3_a100/modules/all; module use {module_dir}/epyc3_h100/modules/all; module use {module_dir}/epyc3_l40/modules/all;"
 
     # Use lmod to get the module help
     def get_lmod_whatis(filepath):
