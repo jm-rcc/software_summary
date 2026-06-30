@@ -35,6 +35,12 @@ python3 scripts/module_version_index.py
 echo "Check description..."
 python3 scripts/module_whatis_index.py
 
+# Make sure working dirs exist
+if [ ! -d $MODS_WORKING_PATH ]
+then
+    mkdir -p $MODS_WORKING_PATH
+fi
+
 # Make sure output dirs exist
 if [ ! -d $MODS_OUTPUT_VERSION_PATH ]
 then
@@ -56,9 +62,7 @@ python3 scripts/checker.py
 cd $MODS_OUTPUT_REPO_PATH
 git pull origin main
 cp $MODS_OUTFILE_PATH/* $MODS_OUTPUT_VERSION_REPO_PATH/*
-git pull
-git add versions/rocky8d/*
-git add versions/rocky9a/*
+git add $MODS_OUTPUT_VERSION_PATH/*
 
 echo "Add and commit files..."
 git add $MODS_OUTPUT_VERSION_REPO_PATH/*
