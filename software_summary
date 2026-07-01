@@ -48,9 +48,9 @@ then
 fi
 
 # Make sure output dirs exist
-if [ ! -d $MODS_OUTPUT_VERSION_PATH ]
+if [ ! -d $MODS_OUTPUT_VERSION_REPO_PATH ]
 then
-    mkdir -p $MODS_OUTPUT_VERSION_PATH
+    mkdir -p $MODS_OUTPUT_VERSION_REPO_PATH
 fi
 
 # Create the json index and md index of all modules with all available info
