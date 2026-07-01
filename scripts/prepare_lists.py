@@ -1,13 +1,14 @@
 import json
 import os
 
+working_dir = os.environ["MODS_WORKING_PATH"]
 output_dir = os.environ["MODS_OUTFILE_PATH"]
 
 labels = ["Description:", "Homepage:", "URL:", "Extensions:"]
 
 moduledata = {}
 
-with open(f"{output_dir}/module_index.json") as f:
+with open(f"{working_dir}/intermediate_tables.json") as f:
     j = json.load(f)
     for k, v in j.items():
         moduledata[k] = {"":"", "Description:":"", "Homepage:":"", "URL:":"", "Extensions:":"", "Skip":""}

@@ -55,6 +55,7 @@ fi
 
 # Create the json index and md index of all modules with all available info
 echo "Prepare json and md files..."
+python3 scripts/combine_tables.py
 python3 scripts/prepare_lists.py
 
 # Change to output directory
