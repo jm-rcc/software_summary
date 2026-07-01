@@ -36,11 +36,11 @@ for i, j in moduledata.items():
             new_json[i][k] = j[k].strip()
 
 print(f"{output_dir}/module_index.json")
-with open(f"{output_dir}/new_output.json", "w") as f:
+with open(f"{output_dir}/module_index.json", "w") as f:
     json.dump(new_json, f, indent = 4)
 
 print(f"{output_dir}/module_index.md")
-with open(f"{output_dir}/new_output.md", "w") as f:
+with open(f"{output_dir}/module_index.md", "w") as f:
     f.write(f"# Modules\n\n")
     for i, j in new_json.items():
         f.write(f"### {i}\n")
