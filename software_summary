@@ -10,7 +10,7 @@
 
 # Set environment source
 # TODO config
-source env/rocky8d.env
+source env/rocky9a.env
 
 # Create log file
 echo "Module Summary"

@@ -56,7 +56,7 @@ if __name__ == '__main__':
     modules_errored = []
     modules_indexed = []
 
-    module_use_string = f"module use {module_noarch_dir}/eait/modules; module use {module_noarch_dir}/imb/modules; module use {module_noarch_dir}/neuro/modules; module use {module_noarch_dir}/qcif/modules; module use {module_noarch_dir}/rcc/modules; module use {module_dir}/epyc3/modules/all; module use {module_dir}/epyc3_a100/modules/all; module use {module_dir}/epyc3_h100/modules/all; module use {module_dir}/epyc3_l40/modules/all;"
+    module_use_string = f"module use {module_noarch_dir}/eait/modules; module use {module_noarch_dir}/rcc/modules; module use {module_dir}/epyc3/modules/all; module use {module_dir}/epyc3_a100/modules/all; module use {module_dir}/epyc3_h100/modules/all; module use {module_dir}/epyc3_l40/modules/all;"
 
     # Use lmod to get the module help
     def get_lmod_whatis(filepath):
